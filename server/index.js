@@ -24,6 +24,56 @@ app.get("/", (req, res) => {
   res.send("Welcome our api!");
 });
 
+app.get("/api", (req, res) => {
+  res.status(200).json([
+    {
+      method: "GET",
+      path: "/api/creators",
+    },
+    {
+      method: "GET",
+      path: "/api/creators/:id",
+      urlParams: [
+        {
+          id: "required url parametr",
+        },
+      ],
+    },
+    {
+      method: "POST",
+      path: "/api/register",
+      bodyParams: [
+        {
+          email: "required",
+          username: "required",
+          password: "required",
+        },
+      ],
+    },
+    {
+      method: "POST",
+      path: "/api/login",
+      bodyParams: [
+        {
+          username: "required",
+          password: "required",
+        },
+      ],
+    },
+    {
+      method: "POST",
+      path: "/api/nfts",
+      bodyParams: [
+        {
+          pageSize: "required",
+          searchStr: "optional",
+          skip: "optional",
+        },
+      ],
+    },
+  ]);
+});
+
 app.get("/api/creators", (req, res) => {
   res.status(200).json(creators);
 });
